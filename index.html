@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ROI Calculator</title>
+    <title>ProfitPath Growth Partners</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .value-dark {
@@ -115,8 +115,8 @@
         <div class="mx-auto max-w-6xl px-6 py-6 space-y-5">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-semibold tracking-tight">ROI Calculator</h1>
-                    <p class="text-base text-zinc-400 muted">Live projection</p>
+                    <h1 class="text-3xl font-semibold tracking-tight">ProfitPath Growth Partners</h1>
+                    <p class="text-base text-zinc-400 muted">Cold Email ROI Calculator</p>
                 </div>
                 <div class="flex items-center gap-3">
                     <button id="themeToggle" class="toggle rounded-lg border border-zinc-700 bg-zinc-900 p-2">
@@ -134,14 +134,25 @@
             </div>
 
             <div class="mt-4 space-y-4">
+                <div class="flex items-center gap-2 text-sm">
+                    <button type="button" data-preset="sbm"
+                        class="preset-toggle rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-zinc-200">
+                        SBM
+                    </button>
+                    <button type="button" data-preset="enterprise"
+                        class="preset-toggle rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-zinc-200">
+                        Enterprise
+                    </button>
+                </div>
                 <div class="space-y-4">
                     <div class="space-y-2">
                         <div class="space-y-3" data-metric="serviceCost">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="serviceCostValue" class="value-dark" data-metric-value></span>
+                                <input id="serviceCostValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="serviceCost" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -149,18 +160,20 @@
                         <div class="space-y-3" data-metric="emails">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="emailsValue" class="value-dark" data-metric-value></span>
+                                <input id="emailsValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="emails" type="range" class="h-1.5 w-full accent-emerald-500" data-metric-input />
                         </div>
 
                         <div class="space-y-3" data-metric="replyRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="replyRateValue" class="value-dark" data-metric-value></span>
+                                <input id="replyRateValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="replyRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -168,9 +181,10 @@
                         <div class="space-y-3" data-metric="interestedRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="interestedRateValue" class="value-dark" data-metric-value></span>
+                                <input id="interestedRateValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="interestedRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -178,9 +192,10 @@
                         <div class="space-y-3" data-metric="bookingRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="bookingRateValue" class="value-dark" data-metric-value></span>
+                                <input id="bookingRateValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="bookingRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -188,9 +203,10 @@
                         <div class="space-y-3" data-metric="showRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="showRateValue" class="value-dark" data-metric-value></span>
+                                <input id="showRateValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="showRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -198,9 +214,10 @@
                         <div class="space-y-3" data-metric="closeRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="closeRateValue" class="value-dark" data-metric-value></span>
+                                <input id="closeRateValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="closeRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -208,9 +225,10 @@
                         <div class="space-y-3" data-metric="dealSize">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <span id="dealSizeValue" class="value-dark" data-metric-value></span>
+                                <input id="dealSizeValue" type="number"
+                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
+                                    data-metric-number />
                             </div>
-                            <p class="text-xs text-zinc-400 muted" data-metric-description></p>
                             <input id="dealSize" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
                         </div>
@@ -220,11 +238,11 @@
                 <div class="space-y-4">
                     <div class="card rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
                         <h2 class="text-base font-semibold uppercase tracking-wide muted text-zinc-300">Projected
-                            Pipeline
+                            Pipeline & Revenue Impact
                         </h2>
                         <div class="mt-3 divide-y divide-zinc-800 divider text-base">
                             <div class="flex items-center justify-between py-2">
-                                <span class="muted text-zinc-400">Total Replies</span>
+                                <span class="muted text-zinc-400">Real Replies</span>
                                 <span id="replies" class="value-dark"></span>
                             </div>
                             <div class="flex items-center justify-between py-2">
@@ -232,15 +250,15 @@
                                 <span id="interested" class="value-dark"></span>
                             </div>
                             <div class="flex items-center justify-between py-2">
-                                <span class="muted text-zinc-400">Bookings</span>
+                                <span class="muted text-zinc-400">Booked Meetings</span>
                                 <span id="bookings" class="value-dark"></span>
                             </div>
                             <div class="flex items-center justify-between py-2">
-                                <span class="muted text-zinc-400">Shows</span>
+                                <span class="muted text-zinc-400">Live Meetings</span>
                                 <span id="shows" class="value-dark"></span>
                             </div>
                             <div class="flex items-center justify-between py-2">
-                                <span class="muted text-zinc-400">Closes</span>
+                                <span class="muted text-zinc-400">Deals Won</span>
                                 <span id="closes" class="value-dark"></span>
                             </div>
                             <div class="flex items-center justify-between py-2">
@@ -250,7 +268,7 @@
                         </div>
                     </div>
 
-                    <div class="card rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4">
+                    <div class="card hidden rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4">
                         <div class="flex items-center justify-between">
                             <div>
                                 <div class="text-xs uppercase muted text-emerald-200/80">Net Return</div>
@@ -271,77 +289,59 @@
         <script>
             const METRICS = {
                 serviceCost: {
-                    label: "Service Cost ($)",
-                    description: "Monthly service fee for the campaign.",
-                    min: 2500,
-                    max: 50000,
-                    step: 500,
-                    default: 15000,
+                    label: "Total Investment",
                     format: (value) => formatCurrency(value)
                 },
                 emails: {
                     label: "Total Emails Sent",
-                    description: "Total outbound emails sent in the period.",
-                    min: 10000,
-                    max: 500000,
-                    step: 5000,
-                    default: 100000,
                     format: (value) => value.toLocaleString()
                 },
                 replyRate: {
-                    label: "Reply Rate (%)",
-                    description: "Percent of emails that get a response.",
-                    min: 0.1,
-                    max: 5,
-                    step: 0.05,
-                    default: 0.75,
+                    label: "Real Reply Rate",
                     format: (value) => `${value.toFixed(2)}%`
                 },
                 interestedRate: {
-                    label: "Interested Lead Rate (%)",
-                    description: "Replies that show buying intent.",
-                    min: 5,
-                    max: 40,
-                    step: 1,
-                    default: 15,
+                    label: "Interested Reply Rate",
                     format: (value) => `${Math.round(value)}%`
                 },
                 bookingRate: {
-                    label: "Lead-to-Booking Rate (%)",
-                    description: "Interested leads that book a meeting.",
-                    min: 10,
-                    max: 80,
-                    step: 5,
-                    default: 50,
+                    label: "Lead-to-Booking Rate",
                     format: (value) => `${Math.round(value)}%`
                 },
                 showRate: {
-                    label: "Meeting Show Rate (%)",
-                    description: "Booked meetings that show up.",
-                    min: 40,
-                    max: 90,
-                    step: 5,
-                    default: 80,
+                    label: "Meeting Show Rate",
                     format: (value) => `${Math.round(value)}%`
                 },
                 closeRate: {
-                    label: "Close Rate (%)",
-                    description: "Meetings that convert to customers.",
-                    min: 5,
-                    max: 40,
-                    step: 5,
-                    default: 25,
+                    label: "Close Rate",
                     format: (value) => `${Math.round(value)}%`
                 },
                 dealSize: {
-                    label: "Average Deal Size ($)",
-                    description: "Average revenue per closed deal.",
-                    min: 2500,
-                    max: 500000,
-                    step: 2500,
-                    default: 250000,
+                    label: "Average Deal Size",
                     format: (value) => formatCurrency(value)
                 }
+            };
+
+            const SBM_PRESET = {
+                serviceCost: { default: 15000, min: 0, max: 25000, step: 500 },
+                emails: { default: 100000, min: 0, max: 1000000, step: 10000 },
+                replyRate: { default: 0.75, min: 0, max: 5, step: 0.05 },
+                interestedRate: { default: 15, min: 0, max: 100, step: 1 },
+                bookingRate: { default: 50, min: 0, max: 100, step: 1 },
+                showRate: { default: 80, min: 0, max: 100, step: 1 },
+                closeRate: { default: 25, min: 0, max: 100, step: 1 },
+                dealSize: { default: 250000, min: 0, max: 1000000, step: 10000 }
+            };
+
+            const ENTERPRISE_PRESET = {
+                serviceCost: { default: 25000, min: 0, max: 50000, step: 1000 },
+                emails: { default: 250000, min: 0, max: 1000000, step: 25000 },
+                replyRate: { default: 1, min: 0, max: 5, step: 0.05 },
+                interestedRate: { default: 20, min: 0, max: 100, step: 1 },
+                bookingRate: { default: 60, min: 0, max: 100, step: 1 },
+                showRate: { default: 85, min: 0, max: 100, step: 1 },
+                closeRate: { default: 30, min: 0, max: 100, step: 1 },
+                dealSize: { default: 500000, min: 0, max: 10000000, step: 50000 }
             };
 
             function formatCurrency(value) {
@@ -356,14 +356,8 @@
                 return Math.round(value / 100) * 100;
             }
 
-            const defaults = Object.fromEntries(
-                Object.entries(METRICS).map(([key, config]) => [key, config.default])
-            );
-
-            const state = { ...defaults };
-
             const elements = {};
-            const readouts = {};
+            const numberInputs = {};
             const metricBlocks = document.querySelectorAll("[data-metric]");
 
             metricBlocks.forEach((block) => {
@@ -372,21 +366,12 @@
                 if (!config) return;
 
                 const labelEl = block.querySelector("[data-metric-label]");
-                const descriptionEl = block.querySelector("[data-metric-description]");
-                const valueEl = block.querySelector("[data-metric-value]");
                 const inputEl = block.querySelector("[data-metric-input]");
+                const numberEl = block.querySelector("[data-metric-number]");
 
                 if (labelEl) labelEl.textContent = config.label;
-                if (descriptionEl) descriptionEl.textContent = config.description;
-                if (inputEl) {
-                    inputEl.min = config.min;
-                    inputEl.max = config.max;
-                    inputEl.step = config.step;
-                    inputEl.value = config.default;
-                }
-
                 if (inputEl) elements[key] = inputEl;
-                if (valueEl) readouts[key] = valueEl;
+                if (numberEl) numberInputs[key] = numberEl;
             });
 
             const outputs = {
@@ -410,9 +395,11 @@
 
             const setReadouts = () => {
                 Object.keys(METRICS).forEach((key) => {
-                    const formatter = METRICS[key].format;
-                    if (readouts[key]) {
-                        readouts[key].textContent = formatter ? formatter(state[key]) : state[key];
+                    if (numberInputs[key]) {
+                        numberInputs[key].value = state[key];
+                        numberInputs[key].title = METRICS[key].format
+                            ? METRICS[key].format(state[key])
+                            : state[key];
                     }
                 });
             };
@@ -437,19 +424,85 @@
                 outputs.roiMultiple.textContent = `${roiMultiple.toFixed(1)}×`;
             };
 
+            const state = {};
+
+            const applyPreset = (preset) => {
+                Object.keys(METRICS).forEach((key) => {
+                    const config = preset[key];
+                    if (!config) return;
+                    METRICS[key].min = config.min;
+                    METRICS[key].max = config.max;
+                    METRICS[key].step = config.step;
+                    METRICS[key].default = config.default;
+
+                    const rangeEl = elements[key];
+                    const numberEl = numberInputs[key];
+                    if (rangeEl) {
+                        rangeEl.min = config.min;
+                        rangeEl.max = config.max;
+                        rangeEl.step = config.step;
+                        rangeEl.value = config.default;
+                        setRangeFill(rangeEl);
+                    }
+                    if (numberEl) {
+                        numberEl.min = config.min;
+                        numberEl.max = config.max;
+                        numberEl.step = config.step;
+                        numberEl.value = config.default;
+                    }
+                    state[key] = config.default;
+                });
+
+                setReadouts();
+                calculate();
+            };
+
             Object.keys(elements).forEach((key) => {
-                elements[key].value = state[key];
-                setRangeFill(elements[key]);
-                elements[key].addEventListener("input", (event) => {
+                const rangeEl = elements[key];
+                const numberEl = numberInputs[key];
+
+                rangeEl.addEventListener("input", (event) => {
                     state[key] = Number(event.target.value);
+                    if (numberEl) {
+                        numberEl.value = state[key];
+                    }
                     setRangeFill(event.target);
                     setReadouts();
                     calculate();
                 });
+
+                if (numberEl) {
+                    numberEl.addEventListener("input", (event) => {
+                        state[key] = Number(event.target.value);
+                        rangeEl.value = event.target.value;
+                        setRangeFill(rangeEl);
+                        setReadouts();
+                        calculate();
+                    });
+                }
             });
 
-            setReadouts();
-            calculate();
+            applyPreset(SBM_PRESET);
+
+            const presetButtons = document.querySelectorAll("[data-preset]");
+            const setActivePresetButton = (activeButton) => {
+                presetButtons.forEach((btn) => {
+                    btn.classList.toggle("border-emerald-400/60", btn === activeButton);
+                    btn.classList.toggle("text-emerald-200", btn === activeButton);
+                });
+            };
+
+            presetButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const preset = button.dataset.preset === "enterprise" ? ENTERPRISE_PRESET : SBM_PRESET;
+                    applyPreset(preset);
+                    setActivePresetButton(button);
+                });
+            });
+
+            if (presetButtons.length > 0) {
+                setActivePresetButton(presetButtons[0]);
+            }
 
             const exportButton = document.getElementById("exportPdf");
             exportButton.addEventListener("click", async () => {
@@ -462,13 +515,18 @@
 
                 const themeToggle = document.getElementById("themeToggle");
                 const exportPdf = document.getElementById("exportPdf");
+                const presetToggles = document.querySelectorAll("[data-preset]");
                 const prevThemeDisplay = themeToggle.style.display;
                 const prevExportDisplay = exportPdf.style.display;
+                const prevPresetDisplays = Array.from(presetToggles).map((btn) => btn.style.display);
                 const prevOverflow = root.style.overflow;
                 root.style.overflow = "visible";
                 document.body.classList.add("exporting");
                 themeToggle.style.display = "none";
                 exportPdf.style.display = "none";
+                presetToggles.forEach((btn) => {
+                    btn.style.display = "none";
+                });
 
                 const canvas = await html2canvas(exportArea, {
                     backgroundColor,
@@ -481,6 +539,9 @@
 
                 themeToggle.style.display = prevThemeDisplay;
                 exportPdf.style.display = prevExportDisplay;
+                presetToggles.forEach((btn, index) => {
+                    btn.style.display = prevPresetDisplays[index];
+                });
                 document.body.classList.remove("exporting");
                 root.style.overflow = prevOverflow;
 

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROI Config Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-zinc-950 text-zinc-100">
+    <div class="mx-auto max-w-4xl px-6 py-8 space-y-6">
+        <header class="space-y-2">
+            <h1 class="text-2xl font-semibold tracking-tight">Config Builder</h1>
+            <p class="text-sm text-zinc-400">Edit values here. Copy the generated config into index.html.</p>
+        </header>
+
+        <form id="metricsForm" class="space-y-6"></form>
+
+        <div class="space-y-3">
+            <button id="generateConfig" type="button"
+                class="rounded-lg border border-emerald-400/40 bg-emerald-500/10 px-4 py-2.5 text-base font-medium text-emerald-200">
+                Generate Config
+            </button>
+            <textarea id="output"
+                class="h-80 w-full rounded-xl border border-zinc-700 bg-zinc-900/60 p-4 text-sm text-zinc-100"
+                placeholder="Generated const METRICS = { ... } will appear here."></textarea>
+        </div>
+    </div>
+
+    <script>
+        const METRICS_SEED = {
+            serviceCost: {
+                label: "Service Cost ($)",
+                description: "Monthly service fee for the campaign.",
+                min: 2500,
+                max: 50000,
+                step: 500,
+                default: 15000,
+                formatType: "currency"
+            },
+            emails: {
+                label: "Total Emails Sent",
+                description: "Total outbound emails sent in the period.",
+                min: 10000,
+                max: 500000,
+                step: 5000,
+                default: 100000,
+                formatType: "number"
+            },
+            replyRate: {
+                label: "Reply Rate (%)",
+                description: "Percent of emails that get a response.",
+                min: 0.1,
+                max: 5,
+                step: 0.05,
+                default: 0.75,
+                formatType: "percent2"
+            },
+            interestedRate: {
+                label: "Interested Lead Rate (%)",
+                description: "Replies that show buying intent.",
+                min: 5,
+                max: 40,
+                step: 1,
+                default: 15,
+                formatType: "percent0"
+            },
+            bookingRate: {
+                label: "Lead-to-Booking Rate (%)",
+                description: "Interested leads that book a meeting.",
+                min: 10,
+                max: 80,
+                step: 5,
+                default: 50,
+                formatType: "percent0"
+            },
+            showRate: {
+                label: "Meeting Show Rate (%)",
+                description: "Booked meetings that show up.",
+                min: 40,
+                max: 90,
+                step: 5,
+                default: 80,
+                formatType: "percent0"
+            },
+            closeRate: {
+                label: "Close Rate (%)",
+                description: "Meetings that convert to customers.",
+                min: 5,
+                max: 40,
+                step: 5,
+                default: 25,
+                formatType: "percent0"
+            },
+            dealSize: {
+                label: "Average Deal Size ($)",
+                description: "Average revenue per closed deal.",
+                min: 2500,
+                max: 500000,
+                step: 2500,
+                default: 250000,
+                formatType: "currency"
+            }
+        };
+
+        const formatTemplates = {
+            currency: "(value) => formatCurrency(value)",
+            number: "(value) => value.toLocaleString()",
+            percent2: "(value) => `${value.toFixed(2)}%`",
+            percent0: "(value) => `${Math.round(value)}%`"
+        };
+
+        const form = document.getElementById("metricsForm");
+        const output = document.getElementById("output");
+
+        Object.entries(METRICS_SEED).forEach(([key, config]) => {
+            const section = document.createElement("section");
+            section.className = "rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5 space-y-4";
+            section.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <h2 class="text-base font-semibold text-zinc-100">${key}</h2>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <label class="space-y-1 text-sm">
+                        <span class="text-zinc-300">Label</span>
+                        <input data-key="${key}" data-field="label" value="${config.label}" class="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2 text-zinc-100" />
+                    </label>
+                    <label class="space-y-1 text-sm sm:col-span-2">
+                        <span class="text-zinc-300">Description</span>
+                        <input data-key="${key}" data-field="description" value="${config.description}" class="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2 text-zinc-100" />
+                    </label>
+                    <label class="space-y-1 text-sm">
+                        <span class="text-zinc-300">Min</span>
+                        <input data-key="${key}" data-field="min" type="number" step="any" value="${config.min}" class="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2 text-zinc-100" />
+                    </label>
+                    <label class="space-y-1 text-sm">
+                        <span class="text-zinc-300">Max</span>
+                        <input data-key="${key}" data-field="max" type="number" step="any" value="${config.max}" class="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2 text-zinc-100" />
+                    </label>
+                    <label class="space-y-1 text-sm">
+                        <span class="text-zinc-300">Step</span>
+                        <input data-key="${key}" data-field="step" type="number" step="any" value="${config.step}" class="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2 text-zinc-100" />
+                    </label>
+                    <label class="space-y-1 text-sm">
+                        <span class="text-zinc-300">Default</span>
+                        <input data-key="${key}" data-field="default" type="number" step="any" value="${config.default}" class="w-full rounded-lg border border-zinc-700 bg-zinc-900 p-2 text-zinc-100" />
+                    </label>
+                </div>
+            `;
+            form.appendChild(section);
+        });
+
+        function getNumber(value) {
+            const parsed = Number(value);
+            return Number.isFinite(parsed) ? parsed : 0;
+        }
+
+        document.getElementById("generateConfig").addEventListener("click", () => {
+            const inputs = Array.from(form.querySelectorAll("input[data-key]"));
+            const grouped = {};
+
+            inputs.forEach((input) => {
+                const key = input.dataset.key;
+                const field = input.dataset.field;
+                if (!grouped[key]) grouped[key] = { ...METRICS_SEED[key] };
+
+                if (field === "label" || field === "description") {
+                    grouped[key][field] = input.value;
+                } else {
+                    grouped[key][field] = getNumber(input.value);
+                }
+            });
+
+            const lines = ["const METRICS = {"];
+
+            Object.entries(grouped).forEach(([key, config], index) => {
+                const comma = index === Object.keys(grouped).length - 1 ? "" : ",";
+                lines.push(`  ${key}: {`);
+                lines.push(`    label: "${config.label.replace(/"/g, '\\"')}",`);
+                lines.push(`    description: "${config.description.replace(/"/g, '\\"')}",`);
+                lines.push(`    min: ${config.min},`);
+                lines.push(`    max: ${config.max},`);
+                lines.push(`    step: ${config.step},`);
+                lines.push(`    default: ${config.default},`);
+                lines.push(`    format: ${formatTemplates[config.formatType]}`);
+                lines.push(`  }${comma}`);
+            });
+
+            lines.push("};");
+            output.value = lines.join("\n");
+        });
+    </script>
+</body>
+
+</html>
