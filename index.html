@@ -72,8 +72,8 @@
 
         body.exporting #exportArea {
             width: 794px;
-            min-height: 1123px;
             margin: 0 auto;
+            overflow: visible;
         }
 
         body.exporting .px-6 {
@@ -87,11 +87,15 @@
         }
 
         body.exporting [data-metric-text] {
-            width: 10.5rem;
+            width: 11rem;
             height: 2.75rem;
             line-height: 2.75rem;
             padding-top: 0;
             padding-bottom: 0;
+            padding-left: 2.5rem;
+            padding-right: 0.5rem;
+            font-size: 0.85rem;
+            overflow: visible;
         }
 
         input[type="range"] {
@@ -745,7 +749,9 @@
                     scrollX: 0,
                     scrollY: 0,
                     windowWidth: exportArea.scrollWidth,
-                    windowHeight: exportArea.scrollHeight,
+                    windowHeight: Math.max(exportArea.scrollHeight, document.body.scrollHeight, 1500),
+                    logging: false,
+                    useCORS: true
                 });
 
                 themeToggle.style.display = prevThemeDisplay;
