@@ -74,6 +74,13 @@
             width: 794px;
             margin: 0 auto;
             overflow: visible;
+            padding-bottom: 4rem;
+            /* Prevent bottom clipping */
+            min-height: auto;
+        }
+
+        body.exporting .pill-stepper {
+            display: none !important;
         }
 
         body.exporting .px-6 {
@@ -86,14 +93,26 @@
             padding-bottom: 1rem;
         }
 
+        body.exporting .pill-stepper {
+            display: none !important;
+        }
+
         body.exporting [data-metric-text] {
             width: 8rem !important;
-            height: 2rem !important;
-            line-height: 2rem !important;
-            padding: 0.25rem 0.5rem !important;
+            height: 2.5rem !important;
+            line-height: 2.5rem !important;
+            padding: 0 0.5rem !important;
             font-size: 0.875rem !important;
             text-align: center !important;
             overflow: visible !important;
+        }
+
+        body.exporting #presetsContainer {
+            display: none !important;
+        }
+
+        body.exporting #metricsContainer {
+            margin-top: 0 !important;
         }
 
         input[type="range"] {
@@ -191,8 +210,8 @@
                 </div>
             </div>
 
-            <div class="mt-4 space-y-4">
-                <div class="flex items-center gap-2 text-sm">
+            <div id="metricsContainer" class="mt-4 space-y-4">
+                <div id="presetsContainer" class="flex items-center gap-2 text-sm">
                     <button type="button" data-preset="sbm"
                         class="preset-toggle rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-zinc-200">
                         SBM
@@ -737,9 +756,6 @@
                 document.body.classList.add("exporting");
                 themeToggle.style.display = "none";
                 exportPdf.style.display = "none";
-                presetToggles.forEach((btn) => {
-                    btn.style.display = "none";
-                });
 
                 const canvas = await html2canvas(exportArea, {
                     backgroundColor,
@@ -747,7 +763,7 @@
                     scrollX: 0,
                     scrollY: 0,
                     windowWidth: exportArea.scrollWidth,
-                    windowHeight: Math.max(exportArea.scrollHeight, document.body.scrollHeight, 1500),
+                    windowHeight: exportArea.scrollHeight + 200, // Add explicit buffer
                     logging: false,
                     useCORS: true
                 });
