@@ -76,6 +76,10 @@
             margin: 0 auto;
         }
 
+        body.exporting [data-metric-text] {
+            width: 9.5rem;
+        }
+
         input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
@@ -106,6 +110,44 @@
             height: 7px;
             border-radius: 9999px;
             background: transparent;
+        }
+
+        .pill {
+            position: relative;
+        }
+
+        .pill-stepper {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 150ms ease;
+        }
+
+        .pill:hover .pill-stepper,
+        .pill:focus-within .pill-stepper {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .pill-button {
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            border: 1px solid #3f3f46;
+            background: #18181b;
+            color: #e5e7eb;
+            font-size: 10px;
+            line-height: 1;
+        }
+
+        .pill-button:hover {
+            border-color: #34d399;
+            color: #34d399;
+        }
+
+        body.light .pill-button {
+            border-color: #d1d5db;
+            background: #ffffff;
+            color: #111827;
         }
     </style>
 </head>
@@ -149,9 +191,16 @@
                         <div class="space-y-3" data-metric="serviceCost">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="serviceCostValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="serviceCostValue" type="text" inputmode="numeric"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="serviceCost" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -160,9 +209,16 @@
                         <div class="space-y-3" data-metric="emails">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="emailsValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="emailsValue" type="text" inputmode="numeric"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="emails" type="range" class="h-1.5 w-full accent-emerald-500" data-metric-input />
                         </div>
@@ -170,9 +226,16 @@
                         <div class="space-y-3" data-metric="replyRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="replyRateValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="replyRateValue" type="text" inputmode="decimal"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="replyRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -181,9 +244,16 @@
                         <div class="space-y-3" data-metric="interestedRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="interestedRateValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="interestedRateValue" type="text" inputmode="decimal"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="interestedRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -192,9 +262,16 @@
                         <div class="space-y-3" data-metric="bookingRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="bookingRateValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="bookingRateValue" type="text" inputmode="decimal"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="bookingRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -203,9 +280,16 @@
                         <div class="space-y-3" data-metric="showRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="showRateValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="showRateValue" type="text" inputmode="decimal"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="showRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -214,9 +298,16 @@
                         <div class="space-y-3" data-metric="closeRate">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="closeRateValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="closeRateValue" type="text" inputmode="decimal"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="closeRate" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -225,9 +316,16 @@
                         <div class="space-y-3" data-metric="dealSize">
                             <div class="flex items-center justify-between text-sm">
                                 <span class="label text-zinc-200" data-metric-label></span>
-                                <input id="dealSizeValue" type="number"
-                                    class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 px-2 py-1 text-right text-zinc-100"
-                                    data-metric-number />
+                                <div class="pill">
+                                    <div
+                                        class="pill-stepper absolute left-2 top-1/2 flex -translate-y-1/2 flex-col gap-1">
+                                        <button type="button" class="pill-button" data-stepper="up">▲</button>
+                                        <button type="button" class="pill-button" data-stepper="down">▼</button>
+                                    </div>
+                                    <input id="dealSizeValue" type="text" inputmode="numeric"
+                                        class="w-32 rounded-md border border-zinc-700 bg-zinc-900/60 pl-10 pr-2 py-1 text-center text-zinc-100"
+                                        data-metric-text />
+                                </div>
                             </div>
                             <input id="dealSize" type="range" class="h-1.5 w-full accent-emerald-500"
                                 data-metric-input />
@@ -268,7 +366,7 @@
                         </div>
                     </div>
 
-                    <div class="card hidden rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4">
+                    <div class="card rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4">
                         <div class="flex items-center justify-between">
                             <div>
                                 <div class="text-xs uppercase muted text-emerald-200/80">Net Return</div>
@@ -290,58 +388,90 @@
             const METRICS = {
                 serviceCost: {
                     label: "Total Investment",
+                    min: 0,
+                    max: 25000,
+                    step: 500,
+                    default: 15000,
                     format: (value) => formatCurrency(value)
                 },
                 emails: {
                     label: "Total Emails Sent",
+                    min: 0,
+                    max: 1000000,
+                    step: 25000,
+                    default: 100000,
                     format: (value) => value.toLocaleString()
                 },
                 replyRate: {
                     label: "Real Reply Rate",
+                    min: 0,
+                    max: 5,
+                    step: 0.05,
+                    default: 0.75,
                     format: (value) => `${value.toFixed(2)}%`
                 },
                 interestedRate: {
                     label: "Interested Reply Rate",
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    default: 15,
                     format: (value) => `${Math.round(value)}%`
                 },
                 bookingRate: {
                     label: "Lead-to-Booking Rate",
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    default: 50,
                     format: (value) => `${Math.round(value)}%`
                 },
                 showRate: {
                     label: "Meeting Show Rate",
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    default: 80,
                     format: (value) => `${Math.round(value)}%`
                 },
                 closeRate: {
                     label: "Close Rate",
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    default: 25,
                     format: (value) => `${Math.round(value)}%`
                 },
                 dealSize: {
                     label: "Average Deal Size",
+                    min: 0,
+                    max: 10000000,
+                    step: 50000,
+                    default: 250000,
                     format: (value) => formatCurrency(value)
                 }
             };
 
             const SBM_PRESET = {
-                serviceCost: { default: 15000, min: 0, max: 25000, step: 500 },
-                emails: { default: 100000, min: 0, max: 1000000, step: 10000 },
+                serviceCost: { default: 5000, min: 0, max: 25000, step: 250 },
+                emails: { default: 25000, min: 0, max: 250000, step: 2500 },
                 replyRate: { default: 0.75, min: 0, max: 5, step: 0.05 },
                 interestedRate: { default: 15, min: 0, max: 100, step: 1 },
                 bookingRate: { default: 50, min: 0, max: 100, step: 1 },
                 showRate: { default: 80, min: 0, max: 100, step: 1 },
                 closeRate: { default: 25, min: 0, max: 100, step: 1 },
-                dealSize: { default: 250000, min: 0, max: 1000000, step: 10000 }
+                dealSize: { default: 10000, min: 0, max: 250000, step: 1000 }
             };
 
             const ENTERPRISE_PRESET = {
-                serviceCost: { default: 25000, min: 0, max: 50000, step: 1000 },
-                emails: { default: 250000, min: 0, max: 1000000, step: 25000 },
-                replyRate: { default: 1, min: 0, max: 5, step: 0.05 },
-                interestedRate: { default: 20, min: 0, max: 100, step: 1 },
-                bookingRate: { default: 60, min: 0, max: 100, step: 1 },
-                showRate: { default: 85, min: 0, max: 100, step: 1 },
-                closeRate: { default: 30, min: 0, max: 100, step: 1 },
-                dealSize: { default: 500000, min: 0, max: 10000000, step: 50000 }
+                serviceCost: { default: 15000, min: 0, max: 50000, step: 1000 },
+                emails: { default: 100000, min: 0, max: 1000000, step: 25000 },
+                replyRate: { default: 0.75, min: 0, max: 5, step: 0.05 },
+                interestedRate: { default: 15, min: 0, max: 100, step: 1 },
+                bookingRate: { default: 50, min: 0, max: 100, step: 1 },
+                showRate: { default: 80, min: 0, max: 100, step: 1 },
+                closeRate: { default: 25, min: 0, max: 100, step: 1 },
+                dealSize: { default: 250000, min: 0, max: 10000000, step: 50000 }
             };
 
             function formatCurrency(value) {
@@ -357,7 +487,7 @@
             }
 
             const elements = {};
-            const numberInputs = {};
+            const textInputs = {};
             const metricBlocks = document.querySelectorAll("[data-metric]");
 
             metricBlocks.forEach((block) => {
@@ -367,11 +497,11 @@
 
                 const labelEl = block.querySelector("[data-metric-label]");
                 const inputEl = block.querySelector("[data-metric-input]");
-                const numberEl = block.querySelector("[data-metric-number]");
+                const textEl = block.querySelector("[data-metric-text]");
 
                 if (labelEl) labelEl.textContent = config.label;
                 if (inputEl) elements[key] = inputEl;
-                if (numberEl) numberInputs[key] = numberEl;
+                if (textEl) textInputs[key] = textEl;
             });
 
             const outputs = {
@@ -389,17 +519,45 @@
                 const min = Number(input.min);
                 const max = Number(input.max);
                 const val = Number(input.value);
-                const pct = ((val - min) / (max - min)) * 100;
+                const pct = max === min ? 0 : ((val - min) / (max - min)) * 100;
                 input.style.background = `linear-gradient(90deg, #34d399 0%, #34d399 ${pct}%, #3f3f46 ${pct}%, #3f3f46 100%)`;
+            };
+
+            const updateRangeFills = () => {
+                Object.values(elements).forEach((input) => {
+                    setRangeFill(input);
+                });
+            };
+
+            const formatDisplayValue = (key, value) => {
+                const formatter = METRICS[key].format;
+                return formatter ? formatter(value) : value;
+            };
+
+            const getStepPrecision = (step) => {
+                const stepText = String(step);
+                const parts = stepText.split(".");
+                return parts[1] ? parts[1].length : 0;
+            };
+
+            const clampToStep = (value, min, max, step) => {
+                const clamped = Math.min(Math.max(value, min), max);
+                if (!step) return clamped;
+                const stepped = Math.round((clamped - min) / step) * step + min;
+                const precision = getStepPrecision(step);
+                return Number(stepped.toFixed(precision));
+            };
+
+            const parseInputValue = (value) => {
+                const cleaned = value.replace(/[^0-9.-]/g, "");
+                const parsed = Number(cleaned);
+                return Number.isFinite(parsed) ? parsed : null;
             };
 
             const setReadouts = () => {
                 Object.keys(METRICS).forEach((key) => {
-                    if (numberInputs[key]) {
-                        numberInputs[key].value = state[key];
-                        numberInputs[key].title = METRICS[key].format
-                            ? METRICS[key].format(state[key])
-                            : state[key];
+                    if (textInputs[key]) {
+                        textInputs[key].value = formatDisplayValue(key, state[key]);
                     }
                 });
             };
@@ -436,53 +594,92 @@
                     METRICS[key].default = config.default;
 
                     const rangeEl = elements[key];
-                    const numberEl = numberInputs[key];
+                    const textEl = textInputs[key];
                     if (rangeEl) {
                         rangeEl.min = config.min;
                         rangeEl.max = config.max;
                         rangeEl.step = config.step;
                         rangeEl.value = config.default;
-                        setRangeFill(rangeEl);
-                    }
-                    if (numberEl) {
-                        numberEl.min = config.min;
-                        numberEl.max = config.max;
-                        numberEl.step = config.step;
-                        numberEl.value = config.default;
                     }
                     state[key] = config.default;
                 });
 
                 setReadouts();
+                updateRangeFills();
+                calculate();
+            };
+
+            const applyBaseline = () => {
+                Object.keys(METRICS).forEach((key) => {
+                    const config = METRICS[key];
+                    const rangeEl = elements[key];
+                    if (rangeEl) {
+                        rangeEl.min = config.min;
+                        rangeEl.max = config.max;
+                        rangeEl.step = config.step;
+                        rangeEl.value = config.default;
+                    }
+                    state[key] = config.default;
+                });
+
+                setReadouts();
+                updateRangeFills();
                 calculate();
             };
 
             Object.keys(elements).forEach((key) => {
                 const rangeEl = elements[key];
-                const numberEl = numberInputs[key];
+                const textEl = textInputs[key];
+                const stepperContainer = rangeEl.closest("[data-metric]")?.querySelector(".pill-stepper");
+                const stepButtons = stepperContainer ? stepperContainer.querySelectorAll("[data-stepper]") : [];
 
                 rangeEl.addEventListener("input", (event) => {
                     state[key] = Number(event.target.value);
-                    if (numberEl) {
-                        numberEl.value = state[key];
-                    }
-                    setRangeFill(event.target);
+                    updateRangeFills();
                     setReadouts();
                     calculate();
                 });
 
-                if (numberEl) {
-                    numberEl.addEventListener("input", (event) => {
-                        state[key] = Number(event.target.value);
-                        rangeEl.value = event.target.value;
-                        setRangeFill(rangeEl);
+                if (textEl) {
+                    textEl.addEventListener("focus", () => {
+                        textEl.value = state[key];
+                        textEl.select();
+                    });
+
+                    textEl.addEventListener("keydown", (event) => {
+                        if (event.key === "Enter") {
+                            textEl.blur();
+                        }
+                    });
+
+                    textEl.addEventListener("blur", () => {
+                        const parsed = parseInputValue(textEl.value);
+                        const config = METRICS[key];
+                        const value = parsed === null ? state[key] : parsed;
+                        const normalized = clampToStep(value, config.min, config.max, config.step);
+                        state[key] = normalized;
+                        rangeEl.value = normalized;
+                        updateRangeFills();
                         setReadouts();
                         calculate();
                     });
                 }
+
+                stepButtons.forEach((button) => {
+                    button.addEventListener("click", () => {
+                        const config = METRICS[key];
+                        const delta = button.dataset.stepper === "down" ? -config.step : config.step;
+                        const nextValue = clampToStep(state[key] + delta, config.min, config.max, config.step);
+                        state[key] = nextValue;
+                        rangeEl.value = nextValue;
+                        updateRangeFills();
+                        setReadouts();
+                        calculate();
+                    });
+                });
             });
 
-            applyPreset(SBM_PRESET);
+            applyBaseline();
 
             const presetButtons = document.querySelectorAll("[data-preset]");
             const setActivePresetButton = (activeButton) => {
@@ -501,7 +698,7 @@
             });
 
             if (presetButtons.length > 0) {
-                setActivePresetButton(presetButtons[0]);
+                setActivePresetButton(null);
             }
 
             const exportButton = document.getElementById("exportPdf");
@@ -557,6 +754,7 @@
             const themeToggle = document.getElementById("themeToggle");
             themeToggle.addEventListener("click", () => {
                 document.body.classList.toggle("light");
+                updateRangeFills();
             });
         </script>
 </body>
